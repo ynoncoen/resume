@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ynon Cohen - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0.5in;
+                font-size: 12px;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .contact-line {
+                gap: 40px;
+                white-space: nowrap;
+            }
+            
+            .contact-item {
+                white-space: nowrap;
+                font-size: 10px;
+            }
+            
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        /* Header with contact info */
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2c5aa0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95em;
+            color: #666;
+        }
+        
+        .contact-line {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-item a {
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main sections */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c5aa0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 1.05em;
+            line-height: 1.7;
+            text-align: justify;
+            color: #444;
+        }
+
+        /* Experience */
+        .company-group {
+            margin-bottom: 30px;
+        }
+        
+        .company-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c5aa0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e8f4fd;
+            padding-bottom: 5px;
+        }
+        
+        .company-jobs {
+            border-left: 3px solid #2c5aa0;
+            padding-left: 15px;
+        }
+        
+        .job {
+            margin-bottom: 25px;
+            border-left: none;
+            padding-left: 0;
+        }
+        
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #2c5aa0;
+        }
+
+        .company {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-top: 2px;
+        }
+
+        .job-details {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .job-description {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .job-description p {
+            margin-bottom: 8px;
+        }
+
+        /* Education */
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .school {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Skills, Languages, Patents */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2c5aa0;
+        }
+
+        .skill-category h4 {
+            color: #2c5aa0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 3px 0;
+            color: #555;
+        }
+
+        .skill-list li:before {
+            content: "▸ ";
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility classes */
+        .text-muted {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Contact Information -->
+    <header class="header">
+        <h1 class="name">Ynon Cohen</h1>
+        <div class="contact-line">
+            <div class="contact-item">
+                <span>Tel:</span>
+                <span>+972-544-816567</span>
+            </div>
+            <div class="contact-item">
+                <span>Email:</span>
+                <a href="mailto:ynoncoen@gmail.com">ynoncoen@gmail.com</a>
+            </div>
+        </div>
+        <div class="contact-line">
+            <div class="contact-item">
+                <span>LinkedIn:</span>
+                <a href="https://www.linkedin.com/in/ynoncohen" target="_blank">https://www.linkedin.com/in/ynoncohen</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="summary">
+            I am the Co-Founder and CTO of Evermile, leading the development of an AI-native logistics platform for small and medium businesses. I focus on scalable, serverless infrastructure and user-first product innovation.
+            <br><br>
+            Previously a VP of Engineering at Via Transportation, where I led the Mobility Operations group and key public-sector projects like NYC's school bus digitization. Earlier roles at Oracle Ravello and Cadence Design Systems.
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="company-group">
+            <div class="company-title">Evermile</div>
+            <div class="company-jobs">
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Co-Founder & CTO</div>
+                        </div>
+                        <div class="job-details">January 2022 - Present (3 years 6 months)<br>Tel Aviv-Yafo, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>We started Evermile with the goal of making logistics work for smaller businesses. As CTO and co-founder, I pioneered and led the development of our logistics management platform, focusing on meeting merchants' needs in a clear and simple way.</p>
+                        <p>I designed a serverless, scalable cloud architecture that allowed us to grow quickly without sacrificing performance or complicating deployment.</p>
+                        <p>One of the most rewarding parts of the journey was transforming the platform into an AI-native product, which improved the merchant experience and boosted our internal efficiency.</p>
+                        <p>I recruited and led a talented team of full-stack engineers. Together, we embraced AI-assisted workflows and pushed the limits of what an agile, AI-first engineering culture can achieve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="company-group">
+            <div class="company-title">Via Transportation</div>
+            <div class="company-jobs">
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">VP of Engineering</div>
+                        </div>
+                        <div class="job-details">April 2021 - January 2022 (10 months)</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Oversaw the development of Via's core mobility platform powering rider and driver experiences in 500+ cities, spanning microtransit, paratransit, and school transportation. Guided multiple cross-functional teams to build a scalable, modular system serving diverse public and private needs.</p>
+                        <p>In my final year, I led technical efforts on Via's flagship school bus initiative, partnering with the NYC Department of Education to digitally transform one of the largest and most complex student transit systems in the U.S. I managed end-to-end tech execution, balancing real-time logistics, compliance, and safety to deliver a smarter, more transparent experience for families and administrators.</p>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Director Of Engineering</div>
+                        </div>
+                        <div class="job-details">March 2020 - April 2021 (1 year 2 months)<br>Tel Aviv, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Managed the engineering group behind all driver-facing backend services on Via's platform, a critical layer supporting driver operations across hundreds of global deployments. Our group was responsible for core functionality including real-time shift execution, driver onboarding and acquisition tools, financial systems (payments, incentives, and reporting), and supply-demand optimization.</p>
+                        <p>I worked closely with product, data, and operations teams to ensure our systems were not only highly scalable and reliable, but also adaptable to the diverse regulatory and operational needs of cities worldwide.</p>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Development Group Leader</div>
+                        </div>
+                        <div class="job-details">April 2018 - March 2020 (2 years)<br>Tel Aviv - Jaffa, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Spearheaded the development of Via's financial systems for gig-economy and full-time drivers, ensuring fast, accurate, and transparent payments at global scale.</p>
+                        <p>Our team built and maintained core services for driver payouts, incentives, and tax reporting, enabling low-touch trust and reliability in one of the platform's most critical functions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="company-group">
+            <div class="company-title">Oracle Ravello</div>
+            <div class="company-jobs">
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Backend Developer</div>
+                        </div>
+                        <div class="job-details">September 2017 - April 2018 (8 months)<br>Raanana, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Backend developer working on Oracle Ravello's cloud hypervisor management system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="company-group">
+            <div class="company-title">Cadence Design Systems</div>
+            <div class="company-jobs">
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Software Architect Team Lead</div>
+                        </div>
+                        <div class="job-details">July 2016 - August 2017 (1 year 2 months)<br>Petah Tikva, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Responsible for overall architecture and design of the Cadence Indago debug platform.</p>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Software Team Leader</div>
+                        </div>
+                        <div class="job-details">October 2009 - July 2016 (6 years 10 months)</div>
+                    </div>
+                    <div class="job-description">
+                        <p>GUI team leader in the Specman product, leading 6 Java Swing GUI engineers, owning 4 different GUI front-end products and the GUI infrastructure library for our entire business division in Cadence.</p>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Software Engineer</div>
+                        </div>
+                        <div class="job-details">August 2006 - September 2009 (3 years 2 months)<br>Rosh Haayin, Israel</div>
+                    </div>
+                    <div class="job-description">
+                        <p>Software engineer in the "vManager" enterprise management product, working in C++ and e (Cadence proprietary language), on Unix platforms (Linux, Solaris, and AIX).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+            <div>
+                <div class="degree">Bachelor of Science (B.Sc.), Computer Science</div>
+                <div class="school">Technion-Machon Technologi Le' Israel</div>
+            </div>
+            <div class="text-muted">2003 - 2006</div>
+        </div>
+    </section>
+</body>
+</html>
